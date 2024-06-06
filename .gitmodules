@@ -1,0 +1,3 @@
+[submodule "fraction"]
+	path = fraction
+	url = git@github.com:resurgencelabs/fraction.git
