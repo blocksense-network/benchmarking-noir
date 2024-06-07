@@ -1,8 +1,8 @@
-# noir-programs
+# benchmarking-noir
 A repository of open-source Noir programs that can be used to benchmark Noir
 language tools
 
-# how to get it
+# How To Get It
 Note that this project uses git submodules. In order to obtain a fully-working
 copy of the repository, issue the following:
 
