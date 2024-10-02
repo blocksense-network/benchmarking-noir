@@ -16,7 +16,7 @@ impl<T, let Capacity: u32> Queue<T, Capacity> {
 	pub fn push(self, element: T) {
 		self.elements[*self.end] = element;
 		*self.end = (*self.end + 1) % (Capacity + 1);
-		assert(*self.start != *self.end);
+		assert(*self.start != *self.end, "Push while queue is full!");
 	}
 
 	pub fn top(self) -> T {
@@ -24,9 +24,13 @@ impl<T, let Capacity: u32> Queue<T, Capacity> {
 	}
 
 	pub fn pop(self) -> T {
-		assert(*self.start != *self.end);
+		assert(*self.start != *self.end, "Pop while queue is empty!");
 		let top = self.top();
 		*self.start = (*self.start + 1) % (Capacity + 1);
 		top
+	}
+
+	pub fn is_empty(self) -> bool {
+		*self.start == *self.end
 	}
 }
