@@ -12,6 +12,7 @@
 
     py-pkgs = pythonPackages: with pythonPackages; [
       networkx
+      scipy
     ];
   in {
     devShells.${system}.default = pkgs.mkShell {
