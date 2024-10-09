@@ -2,7 +2,7 @@ mod queue;
 mod graph;
 use graph::{ Vertex, Graph };
 
-global VERTECIES: u32 = 100;
+global VERTECIES: u32 = 10;
 
 type Name  = u8;
 type Color = u8;
