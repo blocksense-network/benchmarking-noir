@@ -3,13 +3,14 @@ import sys
 import scipy
 argv = sys.argv
 
-sys.stdout = open(argv[1], "wt")
+outfile = argv[1] if len(argv) > 1 else "Prover.toml"
+sys.stdout = open(outfile, "wt")
 
 def to_toml_arr(x):
     return list(map(list, x))
 
-n = argv[2] if len(argv) > 2 else 100
-m = argv[3] if len(argv) > 3 else 1.5 * n
+n = int(argv[2]) if len(argv) > 2 else 100
+m = int(argv[3]) if len(argv) > 3 else int(1.5 * n)
 
 G = nx.gnm_random_graph(n, m)
 
