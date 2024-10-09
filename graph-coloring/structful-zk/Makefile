@@ -1,7 +1,7 @@
-all: generate-prover execute
+all: greedy-gen execute
 
-generate-prover:
-	python ./generate-graph
+greedy-gen:
+	python ../greedy-gen
 
 execute:
 	nargo execute
