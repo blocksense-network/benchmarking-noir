@@ -1,0 +1,5 @@
+__pycache__
+*.toml
+!Nargo.toml
+proofs
+target
