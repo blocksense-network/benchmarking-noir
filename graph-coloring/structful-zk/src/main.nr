@@ -2,16 +2,16 @@ mod queue;
 mod graph;
 use graph::{ Vertex, Graph };
 
-global VERTECIES: u32 = 10;
+global VERTICES: u32 = 10;
 
 type Name  = u8;
 type Color = u8;
 type Vert = Vertex<Name, Color>;
 
 fn main(
-	graph: pub [[bool; VERTECIES]; VERTECIES],
+	graph: pub [[bool; VERTICES]; VERTICES],
 	colors: pub u8,
-	coloring: [(Name, Color); VERTECIES]
+	coloring: [(Name, Color); VERTICES]
 ) {
 	// Does it use the correct amount of colors?
 	let max_color = 1 + coloring.fold(0, |acc: u8, nc: (Name, Color)| {
