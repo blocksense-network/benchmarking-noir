@@ -9,7 +9,7 @@ sys.stdout = open(outfile, "wt")
 def to_toml_arr(x):
     return list(map(list, x))
 
-n = int(argv[2]) if len(argv) > 2 else 100
+n = int(argv[2]) if len(argv) > 2 else 10
 m = int(argv[3]) if len(argv) > 3 else int(1.5 * n)
 
 G = nx.gnm_random_graph(n, m)
