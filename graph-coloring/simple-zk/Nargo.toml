@@ -1,5 +1,5 @@
 [package]
-name = "graph_coloring_structful"
+name = "graph_coloring_simple"
 type = "bin"
 authors = [""]
 compiler_version = ">=0.31.0"
