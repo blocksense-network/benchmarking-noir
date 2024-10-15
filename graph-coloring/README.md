@@ -10,6 +10,7 @@ Our aim is to prove we have an N-coloring for the given graph, without sharing t
 Make sure to have all dependencies installed!
 
 - `greedy-gen`: Python with NetworkX
+- `bruteforce-gen`: GCC compiler
 
 Choose a zero-knowledge implementation: `simple-zk` or `structful-zk`
 
@@ -28,6 +29,15 @@ make V=20 # edges will be 30
 make V=20 E=5
 ```
 
+By defualt `make` will use `greedy-gen`.
+To use the non-greedy `bruteforce-gen`, **first** create a `graph.txt` file, **then** run
+
+```bash
+make bfg
+```
+
+Here you're defining the vertices (and edges in practice) in `graph.txt`.
+
 ## Components
 
 ### greedy-gen
@@ -38,6 +48,14 @@ It uses networkx's greedy_color for coloring.
 Arguments: `<OUTPUT_FILE> <VERTICES> <EDGES>`  
 Defaults: `Prover.toml 10 15`  
 All argument's are optional.
+
+### bruteforce-gen
+
+A parallelized 3-coloring implementation, written in C++, with isn't greedy.
+Contrary to `greedy-gen`, it doesn't generate the graph.
+
+You need to have the amount of vertices and then an adjacency matrix, all separated with blank characters (space, newline, tab), inside a file called `graph.txt`.
+Prints a `Prover.toml`.
 
 ### simple-zk
 
