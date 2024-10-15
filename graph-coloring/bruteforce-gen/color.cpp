@@ -110,12 +110,6 @@ bool find_coloring(const Neighbors &neighbors, Coloring &result) {
     }
 
     sort(starting_points.begin(), starting_points.end());
-    for (auto &sp : starting_points) {
-        for (auto &x : sp) {
-            cout << x << ' ';
-        }
-        cout << endl;
-    }
 
     bool any_solved = false;
 
@@ -171,11 +165,34 @@ bool find_coloring(const Neighbors &neighbors, Coloring &result) {
     return false;
 }
 
-void print_coloring(const Coloring &coloring) {
-    for (auto c : coloring) {
-        cout << c << ' ';
+void print_toml(const Neighbors &neighbors, const Coloring &coloring) {
+    int n = neighbors.size();
+
+    cout << "graph = [";
+    for (int i = 0; i < n; ++i) {
+        cout << "[";
+        for (int j = 0; j < n; ++j) {
+            cout << neighbors[i][j];
+            if (j < n - 1) {
+                cout << ", ";
+            }
+        }
+        cout << "]";
+        if (i < n - 1) {
+            cout << ", ";
+        }
     }
-    cout << endl;
+    cout << "]" << endl;
+    cout << "colors = 3" << endl;
+    cout << "coloring = [";
+
+    for (int i = 0; i < n; ++i) {
+        cout << "[" << i << ", " << coloring[i] << "]";
+        if (i < n - 1) {
+            cout << ", ";
+        }
+    }
+    cout << "]" << endl;
 }
 
 // Optimal graph 3-coloring using brute-force.
@@ -184,10 +201,9 @@ int main() {
 
     vector<size_t> coloring(neighbors.size(), 0);
     if (find_coloring(neighbors, coloring)) {
-        cout << 1 << endl;
-        print_coloring(coloring);
+        print_toml(neighbors, coloring);
     } else {
-        cout << 0 << endl;
+        cerr << 0 << endl;
     }
 
     return 0;
