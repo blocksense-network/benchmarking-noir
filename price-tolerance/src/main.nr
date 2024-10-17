@@ -4,8 +4,8 @@ use float::{ Float, lte, div, sub, sum, abs, printlnF };
 global MAX_VALIDATORS = 8;
 
 fn main(
-	validators: [Float; MAX_VALIDATORS],
-	tolerance: Float,
+	validators: pub [Float; MAX_VALIDATORS],
+	tolerance: pub Float,
 ) {
 	// Helpers
 	let n = validators.fold(0, |acc: u32, curr: Float| {
