@@ -72,7 +72,7 @@ global pow10: [i64; 10] = [
 fn num_len(x: i64) -> i64 {
 	let mut len = 0;
 	let mut num = x;
-	for i in 0..10 {
+	for _ in 0..10 {
 		if num != 0 {
 			num /= 10;
 			len += 1;
