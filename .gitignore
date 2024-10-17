@@ -1,5 +1,5 @@
 __pycache__
-*.toml
+graph-coloring/*/*.toml
 !Nargo.toml
 proofs
 target
