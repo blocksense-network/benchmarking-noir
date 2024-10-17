@@ -29,8 +29,8 @@ make V=20 # edges will be 30
 make V=20 E=5
 ```
 
-By defualt `make` will use `greedy-gen`.
-To use the non-greedy `bruteforce-gen`, **first** create a `graph.txt` file, **then** run
+By default `make` will use `greedy-gen`. To use the non-greedy
+`bruteforce-gen`, **first** create a `graph.txt` file, **then** run
 
 ```bash
 make bfg
@@ -51,10 +51,15 @@ All argument's are optional.
 
 ### bruteforce-gen
 
-A parallelized 3-coloring implementation, written in C++, with isn't greedy.
-Contrary to `greedy-gen`, it doesn't generate the graph.
+A parallelized 3-coloring implementation, written in C++, which isn't greedy.
+Contrary to `greedy-gen`, it doesn't generate the graph. Hint: you can still
+use `greedy-gen` to generate the graph and then convert the Prover.toml in
+graph.txt so you can use it as an input for `bruteforce-gen`.
 
-You need to have the amount of vertices and then an adjacency matrix, all separated with blank characters (space, newline, tab), inside a file called `graph.txt`.
+You need to have the amount of vertices and then an adjacency matrix, all
+separated with blank characters (space, newline, tab), inside a file called
+`graph.txt`.
+
 Prints a `Prover.toml`.
 
 ### simple-zk
