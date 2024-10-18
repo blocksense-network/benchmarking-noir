@@ -20,7 +20,7 @@ fn main(validators: pub [Float; MAX_VALIDATORS], tolerance: pub Float) {
 	}
     );
     // Sorted validator values
-    let values = validators.sort_via(lte).map(|x: Float| if x.0 == 0 { (1,0) } else { x });
+    let values = validators.sort_via(lte);
 
     // Compute median
     let median = values[(MAX_VALIDATORS - n) + n / 2];
