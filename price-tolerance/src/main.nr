@@ -22,6 +22,9 @@ fn main(
 		}
 	}
     );
+    // If n == 0, then mid = MAX_VALIDATORS and index becomes too large
+    assert(n > 0);
+
     // Sorted validator values
     let values = validators.sort_via(lte);
 
