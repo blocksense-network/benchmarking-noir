@@ -3,7 +3,10 @@ use float::{Float, lte, div, sub, abs, printlnF};
 
 global MAX_VALIDATORS = 8;
 
-fn main(validators: pub [Float; MAX_VALIDATORS], tolerance: pub Float) {
+fn main(
+    validators: pub [Float; MAX_VALIDATORS],
+    tolerance: pub Float
+) -> pub ([Float; MAX_VALIDATORS], u32, u32) {
     // Since you always need to provide MAX_VALIDATORS amount of values,
     // when validators are less, you can pass zeroes.
 
@@ -22,10 +25,13 @@ fn main(validators: pub [Float; MAX_VALIDATORS], tolerance: pub Float) {
     // Sorted validator values
     let values = validators.sort_via(lte);
 
-    // Compute median
+    // Compute median; note: this is wrong for even values
     let median = values[(MAX_VALIDATORS - n) + n / 2];
+    print("Median value: ");
     printlnF(median);
 
+    println("Correct validator values: ");
+    let mut correct_count: u32 = 0;
     // Compute reports
     for i in 0..MAX_VALIDATORS {
         if values[i].0 != 0 {
@@ -34,8 +40,16 @@ fn main(validators: pub [Float; MAX_VALIDATORS], tolerance: pub Float) {
             //  perc_chng = |values[i] - median| / median
             let perc_chng = div(abs(sub(values[i], median)), median);
             if lte(perc_chng, tolerance) {
+                correct_count += 1;
                 printlnF(values[i]);
             }
         }
     }
+
+    print("Number of correct validators: ");
+    print(correct_count);
+    print(" of ");
+    println(n);
+
+    (values, correct_count, n)
 }
