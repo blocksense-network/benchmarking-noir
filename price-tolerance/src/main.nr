@@ -28,22 +28,14 @@ fn main(
     // Sorted validator values
     let values = validators.sort_via(lte);
 
-    let mut median: Float = (0, 0);
-
     // Compute median
+    let mid = (MAX_VALIDATORS - n) + n / 2;
+    let mut median = values[mid];
+
     if n % 2 == 0 {
-        median = div(
-            sum(
-                values[(MAX_VALIDATORS - n) + n / 2],
-                values[(MAX_VALIDATORS - n) + n / 2 - 1]
-            ),
-            (2, 0)
-        );
+        median = div(sum(median, values[mid - 1]), (2,0));
     }
-    // Note; else gives a different behaviour here, so don't replace.
-    if n % 2 != 0 {
-        median = values[(MAX_VALIDATORS - n) + n / 2];
-    }
+
     print("Median value: ");
     printlnF(median);
 
