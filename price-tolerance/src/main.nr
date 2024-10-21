@@ -1,5 +1,5 @@
 mod float;
-use float::{Float, lte, div, sub, abs, printlnF};
+use float::{Float, lte, div, sub, abs, printlnF, sum};
 
 global MAX_VALIDATORS = 8;
 
@@ -25,8 +25,22 @@ fn main(
     // Sorted validator values
     let values = validators.sort_via(lte);
 
-    // Compute median; note: this is wrong for even values
-    let median = values[(MAX_VALIDATORS - n) + n / 2];
+    let mut median: Float = (0, 0);
+
+    // Compute median
+    if n % 2 == 0 {
+        median = div(
+            sum(
+                values[(MAX_VALIDATORS - n) + n / 2],
+                values[(MAX_VALIDATORS - n) + n / 2 - 1]
+            ),
+            (2, 0)
+        );
+    }
+    // Note; else gives a different behaviour here, so don't replace.
+    if n % 2 != 0 {
+        median = values[(MAX_VALIDATORS - n) + n / 2];
+    }
     print("Median value: ");
     printlnF(median);
 
