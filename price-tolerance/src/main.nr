@@ -13,14 +13,7 @@ fn main(
     // Count of actual validators
     let n = validators.fold(
         0,
-        |acc: u32, curr: Float| {
-		if curr.0 == 0 {
-			acc
-		}
-		else {
-			acc + 1
-		}
-	}
+        |acc: u32, curr: Float| { if curr.0 == 0 { acc } else { acc + 1 } }
     );
     // If n == 0, then mid = MAX_VALIDATORS and index becomes too large
     assert(n > 0);
