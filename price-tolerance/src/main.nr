@@ -6,7 +6,7 @@ global MAX_VALIDATORS = 8;
 fn main(
     validators: pub [Float; MAX_VALIDATORS],
     tolerance: pub Float
-) -> pub ([Float; MAX_VALIDATORS], u32, u32) {
+) -> pub ([Float; MAX_VALIDATORS], Float) {
     // Since you always need to provide MAX_VALIDATORS amount of values,
     // when validators are less, you can pass zeroes.
 
@@ -40,7 +40,8 @@ fn main(
     printlnF(median);
 
     println("Correct validator values: ");
-    let mut correct_count: u32 = 0;
+    let mut correct: BoundedVec<Float, MAX_VALIDATORS> = BoundedVec::new();
+
     // Compute reports
     for i in 0..MAX_VALIDATORS {
         if values[i].0 != 0 {
@@ -48,17 +49,22 @@ fn main(
             // The median is our "true" value, so we award only those who are close to the truth
             //  perc_chng = |values[i] - median| / median
             let perc_chng = div(abs(sub(values[i], median)), median);
+
             if lte(perc_chng, tolerance) {
-                correct_count += 1;
+                correct.push(values[i]);
                 printlnF(values[i]);
             }
         }
     }
 
-    print("Number of correct validators: ");
-    print(correct_count);
-    print(" of ");
-    println(n);
+    let percentage = div((correct.len() as i64, 0), (n as i64, 0));
 
-    (values, correct_count, n)
+    print("Number of correct validators: ");
+    print(correct.len());
+    print(" of ");
+    print(n);
+    print(" which is ");
+    printlnF(percentage);
+
+    (correct.storage(), percentage)
 }
