@@ -26,7 +26,7 @@ fn main(
     let mut median = values[mid];
 
     if n % 2 == 0 {
-        median = div(sum(median, values[mid - 1]), (2,0));
+        median = div(sum(median, values[mid - 1]), (2, 0));
     }
 
     print("Median value: ");
